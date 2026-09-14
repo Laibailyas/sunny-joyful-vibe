@@ -38,7 +38,7 @@ export function SubmitBand() {
               type="button"
               onClick={openSubmitDialog}
               data-cursor-hover
-              className="rise-button inline-flex items-center justify-center gap-2 rounded-full bg-flare px-7 py-3.5 text-sm font-medium text-paper sm:text-base"
+              className="rise-button group inline-flex items-center justify-center gap-2 rounded-full bg-flare px-7 py-3.5 text-sm font-medium text-paper sm:text-base"
             >
               <span aria-hidden className="rise-fill rise-fill--paper" />
               <span className="rise-label transition-colors duration-500 group-hover:text-ink">Submit your charity</span>
