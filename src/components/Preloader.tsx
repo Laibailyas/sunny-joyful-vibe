@@ -78,7 +78,7 @@ export function Preloader() {
           alt=""
           width={256}
           height={256}
-          className="relative h-[54%] w-[54%] object-contain brightness-[1.55] saturate-[0.55]"
+          className="preloader-mark relative h-[54%] w-[54%] object-contain"
         />
       </div>
 

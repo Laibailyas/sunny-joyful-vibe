@@ -10,7 +10,7 @@ const STEPS = [
     description: "One quick install and Dotis starts sharing your unused internet in the background. You won't even notice it.",
   },
   {
-    title: ["Activate &", "keep scrolling"],
+    title: ["Activate &", "keep browsing"],
     description: "Turn it on once, then just browse like you always do. Dotis quietly turns spare bandwidth into real value.",
   },
   {

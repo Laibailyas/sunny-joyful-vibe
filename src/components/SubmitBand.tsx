@@ -55,9 +55,9 @@ export function SubmitBand() {
           </div>
         </div>
 
-        <ul className="grid gap-4">
+        <ul className="grid grid-rows-3 divide-y divide-paper/15">
           {POINTS.map(({ icon: Icon, text }) => (
-            <li key={text} className="flex min-h-16 items-center gap-4 border-t border-paper/15 py-4">
+            <li key={text} className="flex min-h-20 items-center gap-4 py-5">
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-paper/10">
                 <Icon className="h-5 w-5 text-flare" />
               </span>

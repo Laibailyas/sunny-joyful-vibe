@@ -44,6 +44,7 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
   const fontSize = useTransform([size, textScale], (vals: number[]) => (vals[0] ?? 0) * (vals[1] ?? 0));
   const zIndex = useTransform(ctaBlend, (v) => (v > 0.5 ? 3 : 40));
   const pointerEvents = useTransform(ctaBlend, (v) => (v > 0.5 ? "none" : "auto"));
+  const markOpacity = useTransform(ctaBlend, [0, 0.2], [0.88, 0]);
 
   const update = (sy: number) => {
     const el = anchorRef.current;
@@ -133,6 +134,7 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
         src={dotisMark}
         alt=""
         aria-hidden
+        style={{ opacity: markOpacity }}
         className="install-sun-mark absolute left-1/2 top-1/2 h-[54%] w-[54%] -translate-x-1/2 -translate-y-1/2 object-contain"
       />
       <motion.span
