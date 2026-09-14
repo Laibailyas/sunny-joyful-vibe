@@ -1,0 +1,11 @@
+- [x] Rebuild section 3 horizontal click-card layout with Dotis content
+- [x] Move the sticky install sun outside the bottom-right corner
+- [x] All landing-page sections connected (Hero, Trust Bar, How It Works, Choose Cause, Security, Social Proof, FAQ, Final CTA)
+- [x] Restore project code from GitHub after workspace came up empty
+- [x] Add freetree-style curved shape dividers between sections
+- [x] Brand colours: orange + deep red #680202 + dark green accents
+- [x] Editorial black & white treatment on cause imagery
+- [x] Full-page visual verification (desktop + mobile)
+- [x] Replace the hero logo with a download icon and add the orange Dotis mark to the sticky sun
+- [x] Remove landing-page dash punctuation and update the browser title/favicon
+- [x] Move final-section collages inward and lower
