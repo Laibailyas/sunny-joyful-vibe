@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "motion/react";
-import { useEffect, type RefObject } from "react";
+import { useEffect, useState, type RefObject } from "react";
 import dotisMark from "@/assets/dotis-mark-orange.png";
 
 const POINTS = 48;
@@ -30,6 +30,7 @@ const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | null> }) {
+  const [showMark, setShowMark] = useState(true);
   const { scrollY } = useScroll();
   const x = useMotionValue(-999);
   const y = useMotionValue(-999);
@@ -108,6 +109,11 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
   useMotionValueEvent(scrollY, "change", update);
   useEffect(() => {
     const run = () => update(window.scrollY);
+    const ctaEl = document.getElementById("install");
+    const observer = ctaEl
+      ? new IntersectionObserver(([entry]) => setShowMark(!entry?.isIntersecting), { threshold: 0.05 })
+      : null;
+    if (ctaEl && observer) observer.observe(ctaEl);
     run();
     const t = setTimeout(run, 1600);
     window.addEventListener("resize", run);
@@ -116,6 +122,7 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
       clearTimeout(t);
       window.removeEventListener("resize", run);
       window.removeEventListener("scroll", run);
+      observer?.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -129,12 +136,14 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
       style={{ x, y, width: size, height: size, opacity: badgeOpacity, zIndex, pointerEvents }}
     >
       <SunShape className="sun-orbit h-full w-full drop-shadow-[0_18px_40px_rgba(0,0,0,0.25)]" />
-      <img
-        src={dotisMark}
-        alt=""
-        aria-hidden
-        className="install-sun-mark absolute left-1/2 top-1/2 h-[54%] w-[54%] -translate-x-1/2 -translate-y-1/2 object-contain"
-      />
+      {showMark && (
+        <img
+          src={dotisMark}
+          alt=""
+          aria-hidden
+          className="install-sun-mark absolute left-1/2 top-1/2 h-[54%] w-[54%] -translate-x-1/2 -translate-y-1/2 object-contain"
+        />
+      )}
       <motion.span
         style={{ opacity: textOpacity, fontSize }}
         className="install-sun-text absolute inset-0 grid place-items-center text-center font-sans font-normal leading-[1.3] text-paper"
