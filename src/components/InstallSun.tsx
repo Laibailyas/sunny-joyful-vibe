@@ -137,12 +137,14 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
     >
       <SunShape className="sun-orbit h-full w-full drop-shadow-[0_18px_40px_rgba(0,0,0,0.25)]" />
       {showMark && (
-        <img
-          src={dotisMark}
-          alt=""
-          aria-hidden
-          className="install-sun-mark absolute left-1/2 top-1/2 h-[54%] w-[54%] -translate-x-1/2 -translate-y-1/2 object-contain"
-        />
+        <span className="pointer-events-none absolute inset-0 grid place-items-center">
+          <img
+            src={dotisMark}
+            alt=""
+            aria-hidden
+            className="install-sun-mark h-[54%] w-[54%] object-contain"
+          />
+        </span>
       )}
       <motion.span
         style={{ opacity: textOpacity, fontSize }}

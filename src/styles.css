@@ -259,14 +259,15 @@
 .install-sun { will-change: transform, width, height, opacity; }
 
 .install-sun-mark {
-  filter: brightness(0) saturate(100%) invert(18%) sepia(23%) saturate(1113%) hue-rotate(103deg) brightness(87%) contrast(92%);
-  animation: sticky-mark-breathe 3.2s ease-in-out infinite;
+  opacity: 0.82;
+  filter: brightness(0) saturate(100%) invert(44%) sepia(18%) saturate(876%) hue-rotate(91deg) brightness(101%) contrast(86%);
+  animation: mark-breathe 3.2s ease-in-out infinite;
   transform-origin: center;
 }
 
 .preloader-mark {
   opacity: 0.88;
-  filter: brightness(0) saturate(100%) invert(18%) sepia(23%) saturate(1113%) hue-rotate(103deg) brightness(87%) contrast(92%);
+  filter: brightness(0) saturate(100%) invert(44%) sepia(18%) saturate(876%) hue-rotate(91deg) brightness(101%) contrast(86%);
   animation: mark-breathe 3.2s ease-in-out infinite;
   transform-origin: center;
 }
@@ -274,11 +275,6 @@
 @keyframes mark-breathe {
   0%, 100% { transform: scale(0.94); }
   50% { transform: scale(1.04); }
-}
-
-@keyframes sticky-mark-breathe {
-  0%, 100% { transform: translate(-50%, -50%) scale(0.94); }
-  50% { transform: translate(-50%, -50%) scale(1.04); }
 }
 
 /* Reusable "fill rises from the bottom" hover, same feel as the hero download button */
