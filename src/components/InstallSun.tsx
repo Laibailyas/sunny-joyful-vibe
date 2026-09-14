@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "motion/react";
-import { useEffect, useState, type RefObject } from "react";
+import { useEffect, type RefObject } from "react";
 import dotisMark from "@/assets/dotis-mark-orange.png";
 
 const POINTS = 48;
@@ -30,12 +30,12 @@ const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | null> }) {
-  const [showMark, setShowMark] = useState(true);
   const { scrollY } = useScroll();
   const x = useMotionValue(-999);
   const y = useMotionValue(-999);
   const size = useMotionValue(START_SIZE);
   const badgeOpacity = useMotionValue(0);
+  const markOpacity = useMotionValue(0);
   const textTarget = useMotionValue(0);
   // 0 -> still a corner badge, 1 -> fully bloomed into the half-sun behind the final section.
   const ctaBlend = useMotionValue(0);
@@ -100,6 +100,11 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
     y.set(finalY);
     size.set(finalSize);
     badgeOpacity.set(sy > 2 ? 1 : 0);
+    // Keep the mark visible only while the sun travels, then fade it away
+    // before the badge reaches its full resting size.
+    const markEnter = clamp01((p - 0.04) / 0.12);
+    const markExit = 1 - clamp01((p - 0.72) / 0.22);
+    markOpacity.set(markEnter * markExit * 0.88);
     // Label only appears once the sun has settled into the bottom-right corner,
     // and is hidden again once the half-sun takes over.
     textTarget.set(clamp01((p - 0.9) / 0.09) * (1 - clamp01(ctaProgress / 0.25)));
@@ -109,11 +114,6 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
   useMotionValueEvent(scrollY, "change", update);
   useEffect(() => {
     const run = () => update(window.scrollY);
-    const ctaEl = document.getElementById("install");
-    const observer = ctaEl
-      ? new IntersectionObserver(([entry]) => setShowMark(!entry?.isIntersecting), { threshold: 0.05 })
-      : null;
-    if (ctaEl && observer) observer.observe(ctaEl);
     run();
     const t = setTimeout(run, 1600);
     window.addEventListener("resize", run);
@@ -122,7 +122,6 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
       clearTimeout(t);
       window.removeEventListener("resize", run);
       window.removeEventListener("scroll", run);
-      observer?.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -136,16 +135,15 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
       style={{ x, y, width: size, height: size, opacity: badgeOpacity, zIndex, pointerEvents }}
     >
       <SunShape className="sun-orbit h-full w-full drop-shadow-[0_18px_40px_rgba(0,0,0,0.25)]" />
-      {showMark && (
-        <span className="pointer-events-none absolute inset-0 grid place-items-center">
-          <img
-            src={dotisMark}
-            alt=""
-            aria-hidden
-            className="install-sun-mark h-[54%] w-[54%] object-contain"
-          />
-        </span>
-      )}
+      <span className="pointer-events-none absolute inset-0 grid place-items-center">
+        <motion.img
+          src={dotisMark}
+          alt=""
+          aria-hidden
+          style={{ opacity: markOpacity }}
+          className="install-sun-mark h-[54%] w-[54%] object-contain"
+        />
+      </span>
       <motion.span
         style={{ opacity: textOpacity, fontSize }}
         className="install-sun-text absolute inset-0 grid place-items-center text-center font-sans font-normal leading-[1.3] text-paper"

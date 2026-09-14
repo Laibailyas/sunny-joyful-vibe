@@ -259,15 +259,14 @@
 .install-sun { will-change: transform, width, height, opacity; }
 
 .install-sun-mark {
-  opacity: 0.82;
-  filter: brightness(0) saturate(100%) invert(44%) sepia(18%) saturate(876%) hue-rotate(91deg) brightness(101%) contrast(86%);
+  filter: brightness(0) saturate(100%) invert(18%) sepia(23%) saturate(1113%) hue-rotate(103deg) brightness(87%) contrast(92%);
   animation: mark-breathe 3.2s ease-in-out infinite;
   transform-origin: center;
 }
 
 .preloader-mark {
   opacity: 0.88;
-  filter: brightness(0) saturate(100%) invert(44%) sepia(18%) saturate(876%) hue-rotate(91deg) brightness(101%) contrast(86%);
+  filter: brightness(0) saturate(100%) invert(18%) sepia(23%) saturate(1113%) hue-rotate(103deg) brightness(87%) contrast(92%);
   animation: mark-breathe 3.2s ease-in-out infinite;
   transform-origin: center;
 }
