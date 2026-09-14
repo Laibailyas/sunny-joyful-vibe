@@ -119,10 +119,11 @@ export function Hero() {
               type="button"
               onClick={openSubmitDialog}
               data-cursor-hover
-              className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-7 py-3.5 text-base font-medium text-ink transition-colors duration-300 hover:bg-ink hover:text-paper sm:py-4 sm:text-lg"
+              className="rise-button group inline-flex items-center gap-2 rounded-full border border-ink/20 px-7 py-3.5 text-base font-medium text-ink sm:py-4 sm:text-lg"
             >
-              Submit your charity
-              <ArrowUpRight className="h-4 w-4" />
+              <span aria-hidden className="rise-fill rise-fill--ink" />
+              <span className="rise-label transition-colors duration-500 group-hover:text-paper">Submit your charity</span>
+              <ArrowUpRight className="rise-label h-4 w-4 transition-colors duration-500 group-hover:text-paper" />
             </button>
           </motion.div>
 

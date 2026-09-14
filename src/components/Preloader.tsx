@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { SunShape } from "./InstallSun";
-import logo from "@/assets/logo.png";
+import dotisMark from "@/assets/dotis-mark-orange.png";
 
 const DURATION = 1400; // ms it takes the counter to fill on a fast load
 
 const EXIT = 600; // fade-out duration
 
 /**
- * Brand preloader: paper curtain, Dotis logo, spinning sun and a DM Mono
+ * Brand preloader: paper curtain, Dotis mark, spinning sun and a DM Mono
  * percentage. Waits for both the animation and the window load event, then
  * wipes away with an upward sweep.
  */
@@ -71,14 +71,14 @@ export function Preloader() {
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-paper"
       aria-hidden
     >
-      <div className="relative">
-        <SunShape className="sun-orbit absolute -inset-9 h-[calc(100%+4.5rem)] w-[calc(100%+4.5rem)] text-flare/90" />
+      <div className="relative grid h-28 w-28 place-items-center sm:h-32 sm:w-32">
+        <SunShape className="sun-orbit absolute inset-0 h-full w-full text-flare/90" />
         <img
-          src={logo}
-          alt="Dotis"
-          width={1038}
-          height={357}
-          className="relative h-12 w-auto sm:h-14"
+          src={dotisMark}
+          alt=""
+          width={256}
+          height={256}
+          className="relative h-[54%] w-[54%] object-contain brightness-[1.55] saturate-[0.55]"
         />
       </div>
 

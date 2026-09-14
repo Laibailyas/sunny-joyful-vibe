@@ -168,10 +168,11 @@ export function SubmitCharityModal() {
               type="submit"
               disabled={sending}
               data-cursor-hover
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-paper transition-transform duration-300 hover:scale-[1.02] disabled:opacity-60 sm:w-auto sm:text-base"
+              className="rise-button group inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-paper disabled:opacity-60 sm:w-auto sm:text-base"
             >
-              {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-              {sending ? "Sending…" : "Submit for verification"}
+              <span aria-hidden className="rise-fill rise-fill--flare" />
+              {sending ? <Loader2 className="rise-label h-4 w-4 animate-spin" /> : <Send className="rise-label h-4 w-4" />}
+              <span className="rise-label">{sending ? "Sending…" : "Submit for verification"}</span>
             </button>
           </div>
         </form>

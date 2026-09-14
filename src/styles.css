@@ -258,11 +258,22 @@
 
 .install-sun { will-change: transform, width, height, opacity; }
 
+.install-sun-mark {
+  opacity: 0.34;
+  filter: brightness(1.8) saturate(0.35);
+}
+
 /* Reusable "fill rises from the bottom" hover, same feel as the hero download button */
 .rise-button {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+.rise-button:hover {
+  box-shadow: 0 18px 42px -16px oklch(0.585 0.221 30.5 / 0.58);
+  transform: translateY(-2px);
 }
 
 .rise-fill {

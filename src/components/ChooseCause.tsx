@@ -229,10 +229,11 @@ export function ChooseCause() {
             type="button"
             onClick={openSubmitDialog}
             data-cursor-hover
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper transition-transform duration-300 hover:scale-[1.03]"
+            className="rise-button group inline-flex shrink-0 items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper"
           >
-            Submit your local charity
-            <ArrowUpRight className="h-4 w-4" />
+            <span aria-hidden className="rise-fill rise-fill--flare" />
+            <span className="rise-label">Submit your local charity</span>
+            <ArrowUpRight className="rise-label h-4 w-4" />
           </button>
         </div>
       </motion.div>

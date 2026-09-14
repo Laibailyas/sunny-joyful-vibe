@@ -1,6 +1,5 @@
 import { motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "motion/react";
 import { useEffect, type RefObject } from "react";
-import { Download } from "lucide-react";
 import dotisMark from "@/assets/dotis-mark-orange.png";
 
 const POINTS = 48;
@@ -37,12 +36,10 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
   const size = useMotionValue(START_SIZE);
   const badgeOpacity = useMotionValue(0);
   const textTarget = useMotionValue(0);
-  const iconTarget = useMotionValue(1);
   // 0 -> still a corner badge, 1 -> fully bloomed into the half-sun behind the final section.
   const ctaBlend = useMotionValue(0);
-  // Springs keep the icon fade-out and the label fade-in soft instead of snapping.
+  // Spring keeps the label fade-in soft instead of snapping.
   const textOpacity = useSpring(textTarget, { stiffness: 90, damping: 26 });
-  const iconOpacity = useSpring(iconTarget, { stiffness: 80, damping: 24 });
   const textScale = useMotionValue(0.095);
   const fontSize = useTransform([size, textScale], (vals: number[]) => (vals[0] ?? 0) * (vals[1] ?? 0));
   const zIndex = useTransform(ctaBlend, (v) => (v > 0.5 ? 3 : 40));
@@ -102,9 +99,6 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
     y.set(finalY);
     size.set(finalSize);
     badgeOpacity.set(sy > 2 ? 1 : 0);
-    // Icon stays a while after the sun leaves the button, then fades away — and
-    // disappears early once the half-sun starts blooming.
-    iconTarget.set((1 - clamp01((p - 0.35) / 0.35)) * (1 - clamp01(ctaProgress / 0.25)));
     // Label only appears once the sun has settled into the bottom-right corner,
     // and is hidden again once the half-sun takes over.
     textTarget.set(clamp01((p - 0.9) / 0.09) * (1 - clamp01(ctaProgress / 0.25)));
@@ -135,9 +129,12 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
       style={{ x, y, width: size, height: size, opacity: badgeOpacity, zIndex, pointerEvents }}
     >
       <SunShape className="sun-orbit h-full w-full drop-shadow-[0_18px_40px_rgba(0,0,0,0.25)]" />
-      <motion.span style={{ opacity: iconOpacity }} className="absolute inset-0 grid place-items-center">
-        <Download aria-hidden className="h-[44%] w-[44%] text-paper" />
-      </motion.span>
+      <img
+        src={dotisMark}
+        alt=""
+        aria-hidden
+        className="install-sun-mark absolute left-1/2 top-1/2 h-[54%] w-[54%] -translate-x-1/2 -translate-y-1/2 object-contain"
+      />
       <motion.span
         style={{ opacity: textOpacity, fontSize }}
         className="install-sun-text absolute inset-0 grid place-items-center text-center font-sans font-normal leading-[1.3] text-paper"
@@ -148,13 +145,6 @@ export function InstallSun({ anchorRef }: { anchorRef: RefObject<HTMLElement | n
           Dotis
         </span>
       </motion.span>
-      <motion.img
-        src={dotisMark}
-        alt=""
-        aria-hidden
-        style={{ opacity: textOpacity }}
-        className="absolute bottom-[17%] right-[15%] h-[16%] w-[16%] object-contain"
-      />
     </motion.a>
   );
 }

@@ -38,24 +38,26 @@ export function SubmitBand() {
               type="button"
               onClick={openSubmitDialog}
               data-cursor-hover
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-flare px-7 py-3.5 text-sm font-medium text-paper transition-transform duration-300 hover:scale-[1.03] sm:text-base"
+              className="rise-button inline-flex items-center justify-center gap-2 rounded-full bg-flare px-7 py-3.5 text-sm font-medium text-paper sm:text-base"
             >
-              Submit your charity
-              <ArrowUpRight className="h-4 w-4" />
+              <span aria-hidden className="rise-fill rise-fill--paper" />
+              <span className="rise-label transition-colors duration-500 group-hover:text-ink">Submit your charity</span>
+              <ArrowUpRight className="rise-label h-4 w-4 transition-colors duration-500 group-hover:text-ink" />
             </button>
             <a
               href="#install"
               data-cursor-hover
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-paper/25 px-7 py-3.5 text-sm font-medium text-paper transition-colors duration-300 hover:bg-paper hover:text-ink sm:text-base"
+              className="rise-button group inline-flex items-center justify-center gap-2 rounded-full border border-paper/25 px-7 py-3.5 text-sm font-medium text-paper sm:text-base"
             >
-              Install Dotis
+              <span aria-hidden className="rise-fill rise-fill--paper" />
+              <span className="rise-label transition-colors duration-500 group-hover:text-ink">Install Dotis</span>
             </a>
           </div>
         </div>
 
         <ul className="grid gap-4">
           {POINTS.map(({ icon: Icon, text }) => (
-            <li key={text} className="flex items-start gap-4 border-t border-paper/15 pt-4">
+            <li key={text} className="flex min-h-16 items-center gap-4 border-t border-paper/15 py-4">
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-paper/10">
                 <Icon className="h-5 w-5 text-flare" />
               </span>

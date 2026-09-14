@@ -59,7 +59,7 @@ export function FinalCta() {
         whileInView={{ opacity: 1, rotate: -2 }}
         viewport={{ once: true }}
         transition={{ duration: 1.1, ease }}
-        className="pointer-events-none absolute left-[12vw] top-[9svh] z-[6] h-[50svh] w-[34vw] max-w-[160px] object-contain object-left-top mix-blend-multiply sm:left-[8vw] sm:top-[10svh] sm:h-[84svh] sm:w-[30vw] sm:max-w-[280px] lg:left-[8vw] lg:top-[12svh] lg:z-50 lg:w-[24vw] lg:max-w-[420px]"
+        className="pointer-events-none absolute -left-[4vw] top-[4svh] z-20 h-auto w-[55vw] max-w-[240px] object-contain object-left-top sm:left-[3vw] sm:top-[5svh] sm:w-[38vw] sm:max-w-[400px] lg:left-[4vw] lg:top-[6svh] lg:w-[30vw] lg:max-w-[560px]"
       />
       <motion.img
         src={collageFinalRight}
@@ -70,7 +70,7 @@ export function FinalCta() {
         whileInView={{ opacity: 1, rotate: 2 }}
         viewport={{ once: true }}
         transition={{ duration: 1.1, ease }}
-        className="pointer-events-none absolute right-[12vw] top-[9svh] z-[6] h-[50svh] w-[34vw] max-w-[160px] object-contain object-right-top mix-blend-multiply sm:right-[8vw] sm:top-[10svh] sm:h-[84svh] sm:w-[30vw] sm:max-w-[280px] lg:right-[8vw] lg:top-[12svh] lg:z-50 lg:w-[24vw] lg:max-w-[420px]"
+        className="pointer-events-none absolute -right-[4vw] top-[4svh] z-20 h-auto w-[55vw] max-w-[240px] object-contain object-right-top sm:right-[3vw] sm:top-[5svh] sm:w-[38vw] sm:max-w-[400px] lg:right-[4vw] lg:top-[6svh] lg:w-[30vw] lg:max-w-[560px]"
       />
 
       <div className="relative z-10 mx-auto mt-[50svh] flex max-w-2xl flex-col items-center px-2 text-center sm:px-8 md:mt-[17%]">
@@ -130,10 +130,11 @@ export function FinalCta() {
             type="button"
             onClick={openSubmitDialog}
             data-cursor-hover
-            className="inline-flex items-center gap-2 rounded-full border border-paper/30 px-5 py-3 text-sm font-medium text-paper transition-colors duration-300 hover:bg-paper hover:text-ink sm:px-8 sm:py-3.5 sm:text-base md:text-lg"
+            className="rise-button group inline-flex items-center gap-2 rounded-full border border-paper/30 px-5 py-3 text-sm font-medium text-paper sm:px-8 sm:py-3.5 sm:text-base md:text-lg"
           >
-            Submit your charity
-            <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span aria-hidden className="rise-fill rise-fill--paper" />
+            <span className="rise-label transition-colors duration-500 group-hover:text-ink">Submit your charity</span>
+            <ArrowUpRight className="rise-label h-4 w-4 transition-colors duration-500 group-hover:text-ink sm:h-5 sm:w-5" />
           </button>
         </motion.div>
       </div>
